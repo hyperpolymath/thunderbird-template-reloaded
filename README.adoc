@@ -1,0 +1,83 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+= Thunderbird Template Reloaded
+:toc: auto
+:toclevels: 3
+:icons: font
+:source-highlighter: rouge
+
+== Project Status
+
+[IMPORTANT]
+====
+**Repository project specification - implementation will be uploaded shortly.**
+
+This repository is prepared for development but does not yet contain application code.
+====
+
+== Overview
+
+Thunderbird Template Reloaded is intended to be a modern reimplementation of the classic Thunderbird email template extension, rebuilt using contemporary WebExtension APIs and the Hyperpolymath language stack.
+
+== Current Repository Contents
+
+[cols="1,3",options="header"]
+|===
+|Component |Description
+
+|`.github/workflows/mirror.yml`
+|Hub-and-spoke mirroring to GitLab, Codeberg, and Bitbucket with SHA-pinned actions and MITM hardening
+
+|`.github/workflows/instant-sync.yml`
+|Automatic forge propagation on push/release events
+
+|`.claude/CLAUDE.md`
+|AI assistant configuration following Hyperpolymath language policies
+|===
+
+== Intended Features
+
+Based on the original Template Reloaded extension concept:
+
+* Save email drafts as reusable templates
+* Quick insertion of templates when composing
+* Template variables/placeholders
+* Template categories and organization
+* Import/export functionality
+
+== Technology Stack (Per Language Policy)
+
+As per the Hyperpolymath Standard defined in `.claude/CLAUDE.md`:
+
+[cols="1,2",options="header"]
+|===
+|Layer |Technology
+
+|Extension Logic
+|ReScript (compiles to JS)
+
+|Build System
+|Deno
+
+|Performance-critical
+|Rust/WASM (if needed)
+
+|Configuration
+|Nickel
+|===
+
+== Multi-Forge Distribution
+
+This repository is mirrored across multiple forges:
+
+* **GitHub** (primary)
+* **GitLab** (`gitlab.com:overarch-underpin/applications/thunderbird-template-reloaded`)
+* **Codeberg**
+* **Bitbucket**
+
+== License
+
+AGPL-3.0-or-later
+
+== Contributing
+
+Contribution guidelines will be established once the initial implementation is uploaded.

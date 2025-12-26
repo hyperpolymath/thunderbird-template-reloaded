@@ -1,0 +1,109 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+= Thunderbird Template Reloaded - Roadmap
+:toc: auto
+:toclevels: 2
+:icons: font
+
+== Current State
+
+[cols="1,1,3",options="header"]
+|===
+|Phase |Status |Description
+
+|Infrastructure
+|[green]#COMPLETE#
+|Multi-forge mirroring, instant sync, AI tooling configured
+
+|Specification
+|[yellow]#PENDING#
+|Awaiting project specification upload
+
+|Implementation
+|[red]#NOT STARTED#
+|No application code present
+|===
+
+== Phase 0: Infrastructure [COMPLETE]
+
+* [x] Repository created on GitLab
+* [x] GitHub mirror established
+* [x] Hub-and-spoke mirror workflow (GitLab, Codeberg, Bitbucket)
+* [x] Instant sync workflow for forge propagation
+* [x] CLAUDE.md AI assistant configuration
+* [x] SPDX license headers on workflow files
+
+== Phase 1: Specification [PENDING]
+
+* [ ] Upload project specification documents
+* [ ] Define WebExtension manifest requirements
+* [ ] Document Thunderbird MailExtension API usage
+* [ ] Establish ReScript build pipeline design
+* [ ] Define template storage schema
+
+== Phase 2: Core Extension [NOT STARTED]
+
+* [ ] Create `manifest.json` for Thunderbird MailExtension
+* [ ] Set up ReScript project structure
+* [ ] Configure Deno build tooling
+* [ ] Implement background script scaffold
+* [ ] Create compose action button
+
+== Phase 3: Template Management [NOT STARTED]
+
+* [ ] Template storage (IndexedDB or extension storage)
+* [ ] Create template from current composition
+* [ ] List/browse saved templates
+* [ ] Delete/edit template metadata
+* [ ] Template categories/tags
+
+== Phase 4: Template Insertion [NOT STARTED]
+
+* [ ] Insert template into compose window
+* [ ] Variable substitution system
+** Sender name, date, recipient, custom fields
+* [ ] Cursor positioning after insertion
+* [ ] Append vs replace modes
+
+== Phase 5: Advanced Features [NOT STARTED]
+
+* [ ] Import/export templates (JSON format)
+* [ ] Template sharing between profiles
+* [ ] Keyboard shortcuts
+* [ ] Search/filter templates
+* [ ] Template usage statistics
+
+== Phase 6: Polish & Release [NOT STARTED]
+
+* [ ] Localization (i18n)
+* [ ] Accessibility review
+* [ ] Performance optimization
+* [ ] Documentation for end users
+* [ ] Submit to Thunderbird Add-ons (ATN)
+
+== Dependencies & Constraints
+
+=== Thunderbird Compatibility
+
+Target: Thunderbird 115+ (Supernova) with MailExtension APIs
+
+=== Language Policy Compliance
+
+Per Hyperpolymath Standard:
+
+[cols="1,1",options="header"]
+|===
+|Requirement |Implementation
+
+|No TypeScript
+|Use ReScript exclusively
+
+|No Node.js/npm
+|Deno for build and tooling
+
+|No banned languages
+|ReScript + minimal JS glue for WebExtension APIs
+|===
+
+== Notes
+
+This roadmap will be updated once the project specification is uploaded. Current phases are placeholders based on typical Thunderbird template extension functionality.

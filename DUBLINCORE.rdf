@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:dcterms="http://purl.org/dc/terms/">
+  <rdf:Description rdf:about="https://github.com/hyperpolymath/thunderbird-template-reloaded">
+    <dc:title>Thunderbird Template Reloaded</dc:title>
+    <dc:creator>Jonathan D.A. Jewell</dc:creator>
+    <dc:subject>Thunderbird Extension</dc:subject>
+    <dc:subject>Email Templates</dc:subject>
+    <dc:subject>WebExtension</dc:subject>
+    <dc:subject>Productivity</dc:subject>
+    <dc:description>Modern reimplementation of Thunderbird email template extension using WebExtension APIs and ReScript</dc:description>
+    <dc:publisher>Hyperpolymath</dc:publisher>
+    <dc:type>Software</dc:type>
+    <dc:format>application/x-thunderbird-extension</dc:format>
+    <dc:identifier>https://github.com/hyperpolymath/thunderbird-template-reloaded</dc:identifier>
+    <dc:language>en</dc:language>
+    <dc:rights>AGPL-3.0-or-later</dc:rights>
+    <dcterms:license rdf:resource="https://www.gnu.org/licenses/agpl-3.0"/>
+    <dcterms:conformsTo rdf:resource="https://github.com/hyperpolymath/rhodium-standard-repositories"/>
+  </rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+cff-version: 1.2.0
+title: Thunderbird Template Reloaded
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: Jewell
+    given-names: Jonathan D.A.
+repository-code: "https://github.com/hyperpolymath/thunderbird-template-reloaded"
+url: "https://github.com/hyperpolymath/thunderbird-template-reloaded"
+abstract: >-
+  Modern reimplementation of the classic Thunderbird email template
+  extension using WebExtension APIs and the Hyperpolymath language
+  stack (ReScript, Deno, Nickel).
+keywords:
+  - thunderbird
+  - email
+  - templates
+  - webextension
+  - productivity
+license: AGPL-3.0-or-later
+version: "0.1.0"
+date-released: "2025-01-03"

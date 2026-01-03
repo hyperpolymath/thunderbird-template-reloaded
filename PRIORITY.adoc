@@ -1,0 +1,88 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+= Thunderbird Template Reloaded Priority List
+:toc:
+
+== MUST (Critical - Initial Implementation)
+
+[cols="1,3,1"]
+|===
+|ID |Task |Status
+
+|M1
+|WebExtension manifest and structure
+|PENDING
+
+|M2
+|Template storage (IndexedDB)
+|PENDING
+
+|M3
+|Template insertion into compose window
+|PENDING
+
+|M4
+|Basic template editor UI (ReScript)
+|PENDING
+
+|M5
+|Deno build system
+|PENDING
+|===
+
+== SHOULD (Important - Core Features)
+
+[cols="1,3,1"]
+|===
+|ID |Task |Status
+
+|S1
+|Template variables/placeholders
+|PENDING
+
+|S2
+|Template categories and organization
+|PENDING
+
+|S3
+|Import/export functionality
+|PENDING
+
+|S4
+|Keyboard shortcuts for template insertion
+|PENDING
+
+|S5
+|Template preview
+|PENDING
+
+|S6
+|Add Guix/Nix/container configs
+|PENDING
+|===
+
+== COULD (Nice to Have - Future)
+
+[cols="1,3,1"]
+|===
+|ID |Task |Status
+
+|C1
+|Cloud sync (optional, privacy-preserving)
+|PENDING
+
+|C2
+|Template sharing via URL
+|PENDING
+
+|C3
+|AI-assisted template suggestions
+|PENDING
+
+|C4
+|Template analytics (local only)
+|PENDING
+
+|C5
+|Multiple language template variants
+|PENDING
+|===

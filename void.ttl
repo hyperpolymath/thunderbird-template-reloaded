@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<https://github.com/hyperpolymath/thunderbird-template-reloaded> a void:Dataset ;
+    dcterms:title "Thunderbird Template Reloaded" ;
+    dcterms:description "Modern Thunderbird email template extension" ;
+    dcterms:creator <https://github.com/hyperpolymath> ;
+    dcterms:license <https://www.gnu.org/licenses/agpl-3.0> ;
+    dcterms:subject <http://dbpedia.org/resource/Mozilla_Thunderbird> ;
+    dcterms:subject <http://dbpedia.org/resource/Email> ;
+    dcterms:subject <http://dbpedia.org/resource/Template_(word_processing)> ;
+    void:feature <http://www.w3.org/ns/formats/Turtle> ;
+    foaf:homepage <https://github.com/hyperpolymath/thunderbird-template-reloaded> .

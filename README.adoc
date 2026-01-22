@@ -81,7 +81,7 @@ This repository is mirrored across multiple forges:
 
 == License
 
-AGPL-3.0-or-later
+PMPL-1.0-or-later
 
 == Contributing
 

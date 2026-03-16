@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Clade declaration — part of the gv-clade-index registry
+# See: https://github.com/hyperpolymath/gv-clade-index
+
+[identity]
+uuid = "33f3f717-92f6-5684-91e8-92eba0e282f2"
+primary-forge = "github"
+primary-owner = "hyperpolymath"
+canonical-name = "thunderbird-template-reloaded"
+prefixed-name = "dx-thunderbird-template-reloaded"
+
+[clade]
+primary = "dx"
+secondary = []
+assigned = "2026-03-16"
+rationale = ""
+
+[forges]
+github = "hyperpolymath/thunderbird-template-reloaded"
+gitlab = "hyperpolymath/thunderbird-template-reloaded"
+bitbucket = "hyperpolymath/thunderbird-template-reloaded"
+
+[lineage]
+type = "standalone"
+parent = "Thunderbird email template extension"
+born = "2026-03-16"

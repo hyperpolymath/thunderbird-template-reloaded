@@ -1,0 +1,18 @@
+# ⚓ ANCHOR: thunderbird-template-reloaded
+# This is the canonical authority for the thunderbird-template-reloaded repository.
+
+id: "org.hyperpolymath.thunderbird-template-reloaded"
+version: "1.0.0"
+clade: "unknown"
+status: "active"
+
+# SSG Configuration (Unified boj-server build)
+ssg:
+  engine: "casket"
+  output_dir: "public"
+  boj_trigger: true
+  cartridge: "ssg-mcp"
+
+# Relationships
+parents:
+  - "org.hyperpolymath.boj-server"

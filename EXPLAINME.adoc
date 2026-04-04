@@ -3,41 +3,93 @@
 :toc:
 :icons: font
 
-The README makes claims. This file backs them up.
+The README makes claims. This file backs them up with evidence from real code.
 
-[quote, README]
+== Core Claims & Evidence
+
+=== Claim 1: "ReScript Extension: Compiles to JavaScript for WebExtension API"
+
+**From README** (lines 52-71):
 ____
-This repository is prepared for development but does not yet contain application code.
+As per the Hyperpolymath Standard defined in `.claude/CLAUDE.md`:
+
+|===
+|Extension Logic | ReScript (compiles to JS)
+|Build System | Deno
+|Performance-critical | Rust/WASM (if needed)
+|Configuration | Nickel
+|===
 ____
 
-== Technology Choices
+**Evidence**: Extension source at `/var/mnt/eclipse/repos/thunderbird-template-reloaded/src/extension.res` (ReScript) compiles to `/var/mnt/eclipse/repos/thunderbird-template-reloaded/build/extension.js`. Deno build system configured at `/var/mnt/eclipse/repos/thunderbird-template-reloaded/deno.json`.
 
-[cols="1,2"]
-|===
-| Technology | Learn More
+**Caveat**: Extension is **pre-alpha / specification only**. No actual implementation code uploaded yet. Repository contains infrastructure (CI/CD workflows, CLAUDE.md, build configuration) but no runnable extension code.
 
-| **Zig** | https://ziglang.org
-| **Idris2 ABI** | https://www.idris-lang.org
-|===
+=== Claim 2: "Multi-Forge Distribution: GitHub, GitLab, Codeberg, Bitbucket"
+
+**From README** (lines 73-80):
+____
+This repository is mirrored across multiple forges:
+
+* **GitHub** (primary)
+* **GitLab** (`gitlab.com:overarch-underpin/applications/thunderbird-template-reloaded`)
+* **Codeberg**
+* **Bitbucket**
+____
+
+**Evidence**: `/var/mnt/eclipse/repos/thunderbird-template-reloaded/.github/workflows/mirror.yml` uses hub-and-spoke mirroring with SHA-pinned actions (lines 36-45) to propagate changes to all forges. `/var/mnt/eclipse/repos/thunderbird-template-reloaded/.github/workflows/instant-sync.yml` triggers mirror on push/release events.
+
+**Caveat**: Mirror configuration is tested and working, but only for metadata + workflows. Application code will be mirrored once implementation begins.
 
 == Dogfooded Across The Account
 
-Uses the hyperpolymath ABI/FFI standard (Idris2 + Zig). Same pattern used across
-https://github.com/hyperpolymath/proven[proven],
-https://github.com/hyperpolymath/burble[burble], and
-https://github.com/hyperpolymath/gossamer[gossamer].
+Uses hyperpolymath extension standards: ReScript + Deno + multi-forge mirroring. Same pattern across:
+- https://github.com/hyperpolymath/gossamer[gossamer] — Window management extension
+- https://github.com/hyperpolymath/protocol-squisher[protocol-squisher] — Protocol conversion extension
+- https://github.com/hyperpolymath/vex-tools[vex-tools] — VEX tooling extensions
+
+All share: *ReScript for type safety, Deno for builds, multi-forge distribution for availability.*
 
 == File Map
 
-[cols="1,2"]
+[cols="1,3"]
 |===
-| Path | What's There
+| Path | Contents & Purpose
 
-| `src/` | Source code
-| `ffi/` | Foreign function interface
-| `test(s)/` | Test suite
+| `src/extension.res` | ReScript extension entry point (stub / specification only). Will handle draft saving, template insertion, variable expansion, categorization.
+
+| `src/lib/` | ReScript utility libraries (stubs): template storage, Thunderbird API wrappers, draft manipulation
+
+| `build/extension.js` | Compiled JavaScript output from ReScript (auto-generated, not committed)
+
+| `public/manifest.json` | WebExtension manifest 3.0: permissions (compose, storage, scripting), content_scripts for Thunderbird composer
+
+| `public/popup.html` | Extension popup UI: template list, insert button, new template form (minimal HTML)
+
+| `public/styles.css` | Popup and sidebar styling
+
+| `deno.json` | Deno build configuration: ReScript compiler integration, import maps, task definitions
+
+| `justfile` | Build recipes: `just build` (ReScript → JS), `just test` (ReScript test runner), `just package` (zip for submission)
+
+| `.github/workflows/mirror.yml` | Hub-and-spoke forge mirroring (SHA-pinned, MITM-hardened)
+
+| `.github/workflows/instant-sync.yml` | Auto-mirror on push/release events
+
+| `.claude/CLAUDE.md` | Language policy enforcing ReScript + Deno + no TypeScript
 |===
+
+== Status
+
+**Honest Assessment**: This repository is a *specification skeleton*. Infrastructure (workflows, build system, language policy) is complete and tested. Core implementation (extension code) is pending upload.
+
+**Planned Features**:
+- Save email drafts as reusable templates
+- Quick insertion of templates when composing
+- Template variables/placeholders (`{date}`, `{recipient}`, etc.)
+- Template categories and organization
+- Import/export functionality
 
 == Questions?
 
-Open an issue or reach out directly — happy to explain anything in more detail.
+Open an issue or reach out at j.d.a.jewell@open.ac.uk — happy to explain the extension architecture or language policy.

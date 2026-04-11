@@ -1,0 +1,14 @@
+// Trust.a2ml for thunderbird-template-reloaded
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// Generated: 2026-04-08T19:53:08+01:00
+
+Trust {
+    name: "thunderbird-template-reloaded"
+    version: "1.0.0"
+    description: "Trust contractile for thunderbird-template-reloaded"
+    
+    // Basic Trust configuration
+    enabled: true
+    
+    // Repository-specific settings will be added here
+}

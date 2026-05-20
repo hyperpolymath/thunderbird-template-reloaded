@@ -1,0 +1,19 @@
+-- SPDX-License-Identifier: PMPL-1.0-or-later
+package thunderbird-template-reloaded-tests
+
+sourcedir = "tests/idris2"
+
+depends = base
+
+modules = Test.Spec
+        , UnitTest
+        , ContractTest
+        , AspectTest
+        , PropertyTest
+        , SmokeTest
+        , E2ETest
+        , BenchTest
+        , Main
+
+main = Main
+executable = "thunderbird-template-reloaded-tests"

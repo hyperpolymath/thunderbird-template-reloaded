@@ -1,4 +1,4 @@
--- SPDX-License-Identifier: PMPL-1.0-or-later
+-- SPDX-License-Identifier: MPL-2.0
 -- Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 --
 -- Port of tests/e2e_test.ts to Idris2, estate-rollout port 10/11.
@@ -76,13 +76,13 @@ quickstartTest qs =
 public export
 allSuites : List TestCase
 allSuites =
-  [ test "e2e/reflexive: this test file carries PMPL-1.0-or-later header" $ do
+  [ test "e2e/reflexive: this test file carries MPL-2.0 header" $ do
       mb <- readFileMaybe "tests/idris2/E2ETest.idr"
       case mb of
         Nothing => assertTrue "E2ETest.idr must exist" False
         Just content =>
-          assertTrue "SPDX-License-Identifier: PMPL-1.0-or-later present"
-                     (isInfixOf "SPDX-License-Identifier: PMPL-1.0-or-later" content)
+          assertTrue "SPDX-License-Identifier: MPL-2.0 present"
+                     (isInfixOf "SPDX-License-Identifier: MPL-2.0" content)
 
   , test "e2e/reflexive: all test .ts files have SPDX headers" $ do
       allPass (map checkTsSpdx tsTestFiles)

@@ -1,4 +1,4 @@
--- SPDX-License-Identifier: PMPL-1.0-or-later
+-- SPDX-License-Identifier: MPL-2.0
 -- Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 --
 -- Port of tests/property_test.ts to Idris2, estate-rollout port 10/11.
@@ -67,8 +67,8 @@ hookScripts =
 -- Mirrors TS commentStyles array. Inputs reduced to ASCII only.
 commentStyles : List (String, String)
 commentStyles =
-  [ ("# SPDX-License-Identifier: PMPL-1.0-or-later", "PMPL-1.0-or-later")
-  , ("// SPDX-License-Identifier: PMPL-1.0-or-later", "PMPL-1.0-or-later")
+  [ ("# SPDX-License-Identifier: MPL-2.0", "MPL-2.0")
+  , ("// SPDX-License-Identifier: MPL-2.0", "MPL-2.0")
   , ("/* SPDX-License-Identifier: MIT */", "MIT")
   , ("; SPDX-License-Identifier: Apache-2.0", "Apache-2.0")
   , ("-- SPDX-License-Identifier: GPL-3.0-only", "GPL-3.0-only")
@@ -146,8 +146,8 @@ allSuites =
   [ test "property: every .a2ml file has SPDX-License-Identifier header" $ do
       allPass (map checkSpdxPresent a2mlFiles)
 
-  -- All .a2ml files use PMPL-1.0-or-later (if SPDX header present).
-  , test "property: all .a2ml files use PMPL-1.0-or-later" $ do
+  -- All .a2ml files use MPL-2.0 (if SPDX header present).
+  , test "property: all .a2ml files use MPL-2.0" $ do
       allPass (map checkSpdxIsPmpl a2mlFiles)
 
   -- Hook scripts shebang property — TS swallows ENOENT; we report explicitly.
@@ -194,7 +194,7 @@ allSuites =
           let sid = extractSpdxId content in
           if sid == ""
             then pure True     -- no SPDX line; not a regression for this property
-            else assertEq sid "PMPL-1.0-or-later"
+            else assertEq sid "MPL-2.0"
 
     checkShebang : String -> IO Bool
     checkShebang path = do

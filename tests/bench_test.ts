@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-License-Identifier: MPL-2.0
 // Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 //
 // Benchmarks for thunderbird-template-reloaded.
@@ -45,7 +45,7 @@ Deno.bench({
 // Bench: SPDX regex matching
 // ---------------------------------------------------------------------------
 
-const sampleContent = `# SPDX-License-Identifier: PMPL-1.0-or-later
+const sampleContent = `# SPDX-License-Identifier: MPL-2.0
 # Copyright (c) 2026 Jonathan D.A. Jewell
 
 [metadata]

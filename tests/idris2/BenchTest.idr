@@ -1,4 +1,4 @@
--- SPDX-License-Identifier: PMPL-1.0-or-later
+-- SPDX-License-Identifier: MPL-2.0
 -- Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 --
 -- Port of tests/bench_test.ts to Idris2, estate-rollout port 10/11.
@@ -38,7 +38,7 @@ strConcat (x :: xs) = x ++ strConcat xs
 -- 20-fold repetition of a single TOML-ish chunk (mirrors TS .repeat(20))
 chunk : String
 chunk =
-  "# SPDX-License-Identifier: PMPL-1.0-or-later\n" ++
+  "# SPDX-License-Identifier: MPL-2.0\n" ++
   "# Copyright (c) 2026 Jonathan D.A. Jewell\n\n" ++
   "[metadata]\n" ++
   "project = \"thunderbird-template-reloaded\"\n" ++
@@ -88,7 +88,7 @@ allSuites =
 
   -- Regex preconditions: invariants the bench measures must still hold.
   , test "bench-pre: SPDX extractor finds PMPL in 1KB sample" $ do
-      assertEq (extractSpdxId sampleContent) "PMPL-1.0-or-later"
+      assertEq (extractSpdxId sampleContent) "MPL-2.0"
 
   , test "bench-pre: placeholder detection is False on 1KB sample" $ do
       assertEq (containsUnresolvedPlaceholder sampleContent) False

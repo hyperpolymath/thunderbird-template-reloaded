@@ -10,7 +10,7 @@
   title = {thunderbird-template-reloaded},
   year = {2025},
   url = {https://github.com/hyperpolymath/thunderbird-template-reloaded},
-  license = {PMPL-1.0-or-later}
+  license = {MPL-2.0}
 }
 ----
 

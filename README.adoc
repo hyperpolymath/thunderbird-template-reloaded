@@ -2,7 +2,7 @@ image:https://img.shields.io/badge/License-PMPL--1.0-blue.svg[License: PMPL-1.0,
 image:https://img.shields.io/badge/Philosophy-Palimpsest-indigo.svg[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-license"]
 
 
-// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-License-Identifier: MPL-2.0
 = Thunderbird Template Reloaded
 
 :toc: auto
@@ -81,7 +81,7 @@ This repository is mirrored across multiple forges:
 
 == License
 
-PMPL-1.0-or-later
+MPL-2.0
 
 == Contributing
 

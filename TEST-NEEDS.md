@@ -1,6 +1,6 @@
 # TEST-NEEDS.md — CRG Grade C Achievement Record
 
-<!-- SPDX-License-Identifier: PMPL-1.0-or-later -->
+<!-- SPDX-License-Identifier: MPL-2.0 -->
 <!-- Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk> -->
 
 ## CRG Grade: C — ACHIEVED 2026-04-04
@@ -49,7 +49,7 @@ Verifies the repo is in a functional, non-broken state:
 
 Table-driven generative tests verifying invariants over file classes:
 - All .a2ml files have SPDX headers (with documented exemptions for unpatched scaffold files)
-- All .a2ml files use PMPL-1.0-or-later
+- All .a2ml files use MPL-2.0
 - All hook scripts have shebangs
 - SPDX extraction is deterministic across 5 comment styles
 - K9 Nickel example files are non-empty

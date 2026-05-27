@@ -68,7 +68,10 @@ requiredDirsProbed =
   , ("ffi/zig/src",              "ffi/zig/src/main.zig")
   , ("ffi/zig/test",             "ffi/zig/test/integration_test.zig")
   , ("docs",                     "docs/CITATIONS.adoc")
-  , ("examples",                 "examples/SafeDOMExample.res")
+  -- "examples" entry removed 2026-05-26: proxy file
+  -- `examples/SafeDOMExample.res` is being deleted in this same PR
+  -- (estate-wide gitbot-fleet#208 sweep — stale ReScript fixture).
+  -- Re-add when a non-stale examples/ file lands (affinescript#56).
   , ("contractiles",             "contractiles/README.adoc")
   , ("hooks",                    "hooks/validate-spdx.sh")
   , (".well-known",              ".well-known/security.txt")

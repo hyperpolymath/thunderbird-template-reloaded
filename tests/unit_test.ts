@@ -59,7 +59,7 @@ Deno.test("unit: extractSpdxId returns null when header absent", () => {
 });
 
 Deno.test("unit: extractSpdxId handles leading whitespace", () => {
-  const content = "   // SPDX-License-Identifier: MIT\n";
+  const content = "   // SPDX-License-Identifier: MPL-2.0\n";
   assertEquals(extractSpdxId(content), "MIT");
 });
 

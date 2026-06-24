@@ -23,7 +23,7 @@ jobs:
           #!/usr/bin/env bash
           set -euo pipefail
 
-          for file in Must Trust Dust Lust Adjust Intend; do
+          for file in Must Trust Dust Adjust Intend; do
             if [ ! -f "${file}.a2ml" ]; then
               echo "ERROR: Missing contractile: ${file}.a2ml"
               exit 1

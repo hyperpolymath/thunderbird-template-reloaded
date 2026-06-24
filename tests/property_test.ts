@@ -104,9 +104,9 @@ Deno.test("property: all hook scripts have bash/sh shebang", async () => {
 const commentStyles = [
   ["# SPDX-License-Identifier: MPL-2.0", "MPL-2.0"],
   ["// SPDX-License-Identifier: MPL-2.0", "MPL-2.0"],
-  ["/* SPDX-License-Identifier: MIT */", "MIT"],
-  ["; SPDX-License-Identifier: Apache-2.0", "Apache-2.0"],
-  ["-- SPDX-License-Identifier: GPL-3.0-only", "GPL-3.0-only"],
+  ["/* SPDX-License-Identifier: MPL-2.0 */", "MIT"],
+  ["; SPDX-License-Identifier: MPL-2.0", "Apache-2.0"],
+  ["-- SPDX-License-Identifier: MPL-2.0", "GPL-3.0-only"],
 ];
 
 for (const [input, expected] of commentStyles) {

@@ -100,7 +100,7 @@ allSuites =
       case mb of
         Nothing => assertTrue "README.adoc must exist" False
         Just content =>
-          assertTrue "SPDX-License-Identifier: present"
+          assertTrue "SPDX-License-Identifier: MPL-2.0"
                      (isInfixOf "SPDX-License-Identifier:" content)
 
   -- Hypatia CI integration

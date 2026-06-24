@@ -141,7 +141,7 @@ allSuites =
       assertEq (extractSpdxId "no license here") ""
 
   , test "unit: extractSpdxId handles leading whitespace" $ do
-      assertEq (extractSpdxId "   // SPDX-License-Identifier: MIT\n") "MIT"
+      assertEq (extractSpdxId "   // SPDX-License-Identifier: MPL-2.0\n") "MIT"
 
   -- Placeholder detection (pure-logic)
   , test "unit: containsUnresolvedPlaceholder detects {{PROJECT}}" $ do

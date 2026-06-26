@@ -1,6 +1,6 @@
 # TEST-NEEDS.md — CRG Grade C Achievement Record
 
-<!-- SPDX-License-Identifier: MPL-2.0 -->
+<!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
 <!-- Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk> -->
 
 ## CRG Grade: C — ACHIEVED 2026-04-04

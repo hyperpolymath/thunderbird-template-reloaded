@@ -21,7 +21,7 @@ This repository is prepared for development but does not yet contain application
 
 == Overview
 
-Thunderbird Template Reloaded is intended to be a modern reimplementation of the classic Thunderbird email template extension, rebuilt using contemporary WebExtension APIs and the Hyperpolymath language stack.
+Thunderbird Template Reloaded is intended to be a modern reimplementation of the classic Thunderbird email template extension, rebuilt using contemporary WebExtension APIs and a modern, memory safe, typesafe language stack.
 
 == Current Repository Contents
 
@@ -58,7 +58,7 @@ As per the Hyperpolymath Standard defined in `.claude/CLAUDE.md`:
 |Layer |Technology
 
 |Extension Logic
-|ReScript (compiles to JS)
+|AffineScript (compiles to JS)
 
 |Build System
 |Deno

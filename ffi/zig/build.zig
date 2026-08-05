@@ -1,4 +1,4 @@
-// {{PROJECT}} FFI Build Configuration
+// THUNDERBIRD_TEMPLATE_RELOADED FFI Build Configuration
 // SPDX-License-Identifier: MPL-2.0
 
 const std = @import("std");

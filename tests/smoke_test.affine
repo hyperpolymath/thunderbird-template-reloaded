@@ -1,11 +1,8 @@
 // SPDX-License-Identifier: MPL-2.0
-// Ported via Harvard Engine mechanical processor
+// Ported via Harvard Engine (Semantic pass)
 
 module smoke_test;
 
-// TODO: Complete semantic implementation
-
-/* === ORIGINAL TYPESCRIPT CONTEXT ===
 // SPDX-License-Identifier: MPL-2.0
 // Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 //
@@ -18,9 +15,9 @@ module smoke_test;
 
 import { assertEquals, assertNotEquals } from "jsr:@std/assert@^1";
 
-const REPO_ROOT = new URL("../", import.meta.url).pathname;
+let REPO_ROOT = new URL("../", import.meta.url).pathname;
 
-async function pathExists(relPath: string): Promise<boolean> {
+async fn pathExists(relPath: string): boolean {
   try {
     await Deno.stat(REPO_ROOT + relPath);
     return true;
@@ -29,9 +26,9 @@ async function pathExists(relPath: string): Promise<boolean> {
   }
 }
 
-async function isDirectory(relPath: string): Promise<boolean> {
+async fn isDirectory(relPath: string): boolean {
   try {
-    const info = await Deno.stat(REPO_ROOT + relPath);
+    let info = await Deno.stat(REPO_ROOT + relPath);
     return info.isDirectory;
   } catch {
     return false;
@@ -42,7 +39,7 @@ async function isDirectory(relPath: string): Promise<boolean> {
 // Smoke: top-level required files
 // ---------------------------------------------------------------------------
 
-const REQUIRED_FILES = [
+let REQUIRED_FILES = [
   "LICENSE",
   "README.adoc",
   "EXPLAINME.adoc",
@@ -62,7 +59,7 @@ const REQUIRED_FILES = [
 
 for (const file of REQUIRED_FILES) {
   Deno.test(`smoke: required file exists — ${file}`, async () => {
-    const exists = await pathExists(file);
+    let exists = await pathExists(file);
     assertEquals(exists, true, `Required file missing: ${file}`);
   });
 }
@@ -71,7 +68,7 @@ for (const file of REQUIRED_FILES) {
 // Smoke: required directories
 // ---------------------------------------------------------------------------
 
-const REQUIRED_DIRS = [
+let REQUIRED_DIRS = [
   ".machine_readable",
   ".machine_readable/6a2",
   "tests",
@@ -89,7 +86,7 @@ const REQUIRED_DIRS = [
 
 for (const dir of REQUIRED_DIRS) {
   Deno.test(`smoke: required directory exists — ${dir}`, async () => {
-    const isDir = await isDirectory(dir);
+    let isDir = await isDirectory(dir);
     assertEquals(isDir, true, `Required directory missing: ${dir}`);
   });
 }
@@ -98,7 +95,7 @@ for (const dir of REQUIRED_DIRS) {
 // Smoke: machine-readable checkpoint files
 // ---------------------------------------------------------------------------
 
-const A2ML_FILES = [
+let A2ML_FILES = [
   ".machine_readable/6a2/STATE.a2ml",
   ".machine_readable/6a2/META.a2ml",
   ".machine_readable/6a2/ECOSYSTEM.a2ml",
@@ -109,7 +106,7 @@ const A2ML_FILES = [
 
 for (const f of A2ML_FILES) {
   Deno.test(`smoke: a2ml checkpoint exists — ${f}`, async () => {
-    const exists = await pathExists(f);
+    let exists = await pathExists(f);
     assertEquals(exists, true, `A2ML file missing: ${f}`);
   });
 }
@@ -118,7 +115,7 @@ for (const f of A2ML_FILES) {
 // Smoke: .well-known files
 // ---------------------------------------------------------------------------
 
-const WELL_KNOWN = [
+let WELL_KNOWN = [
   ".well-known/security.txt",
   ".well-known/ai.txt",
   ".well-known/humans.txt",
@@ -126,7 +123,7 @@ const WELL_KNOWN = [
 
 for (const f of WELL_KNOWN) {
   Deno.test(`smoke: well-known file exists — ${f}`, async () => {
-    const exists = await pathExists(f);
+    let exists = await pathExists(f);
     assertEquals(exists, true, `Well-known file missing: ${f}`);
   });
 }
@@ -152,7 +149,7 @@ Deno.test("smoke: FFI integration_test.zig exists", async () => {
 // ---------------------------------------------------------------------------
 
 Deno.test("smoke: SECURITY.md is non-empty", async () => {
-  const content = await Deno.readTextFile(REPO_ROOT + "SECURITY.md");
+  let content = await Deno.readTextFile(REPO_ROOT + "SECURITY.md");
   assertNotEquals(content.trim(), "");
 });
 
@@ -161,8 +158,8 @@ Deno.test("smoke: SECURITY.md is non-empty", async () => {
 // ---------------------------------------------------------------------------
 
 Deno.test("smoke: README.adoc mentions thunderbird", async () => {
-  const content = await Deno.readTextFile(REPO_ROOT + "README.adoc");
-  const lc = content.toLowerCase();
+  let content = await Deno.readTextFile(REPO_ROOT + "README.adoc");
+  let lc = content.toLowerCase();
   assertEquals(
     lc.includes("thunderbird"),
     true,
@@ -170,4 +167,3 @@ Deno.test("smoke: README.adoc mentions thunderbird", async () => {
   );
 });
 
-==================================== */

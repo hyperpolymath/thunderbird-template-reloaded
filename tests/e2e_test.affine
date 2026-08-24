@@ -1,11 +1,8 @@
 // SPDX-License-Identifier: MPL-2.0
-// Ported via Harvard Engine mechanical processor
+// Ported via Harvard Engine (Semantic pass)
 
 module e2e_test;
 
-// TODO: Complete semantic implementation
-
-/* === ORIGINAL TYPESCRIPT CONTEXT ===
 // SPDX-License-Identifier: MPL-2.0
 // Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 //
@@ -24,14 +21,14 @@ import {
 } from "jsr:@std/assert@^1";
 import { join } from "jsr:@std/path@^1";
 
-const REPO_ROOT = new URL("../", import.meta.url).pathname;
+let REPO_ROOT = new URL("../", import.meta.url).pathname;
 
 // ---------------------------------------------------------------------------
 // E2E: Reflexive — this test file has correct SPDX header
 // ---------------------------------------------------------------------------
 
 Deno.test("e2e/reflexive: this test file carries MPL-2.0 header", async () => {
-  const content = await Deno.readTextFile(
+  let content = await Deno.readTextFile(
     REPO_ROOT + "tests/e2e_test.ts",
   );
   assertMatch(content, /SPDX-License-Identifier:\s*PMPL-1\.0-or-later/);
@@ -42,10 +39,10 @@ Deno.test("e2e/reflexive: this test file carries MPL-2.0 header", async () => {
 // ---------------------------------------------------------------------------
 
 Deno.test("e2e/reflexive: all test .ts files have SPDX headers", async () => {
-  const testsDir = REPO_ROOT + "tests";
+  let testsDir = REPO_ROOT + "tests";
   for await (const entry of Deno.readDir(testsDir)) {
     if (entry.isFile && entry.name.endsWith(".ts")) {
-      const content = await Deno.readTextFile(`${testsDir}/${entry.name}`);
+      let content = await Deno.readTextFile(`${testsDir}/${entry.name}`);
       assertMatch(
         content,
         /SPDX-License-Identifier:/,
@@ -59,7 +56,7 @@ Deno.test("e2e/reflexive: all test .ts files have SPDX headers", async () => {
 // E2E: CI hook scripts exist and are syntactically non-empty
 // ---------------------------------------------------------------------------
 
-const EXPECTED_HOOKS = [
+let EXPECTED_HOOKS = [
   "hooks/validate-codeql.sh",
   "hooks/validate-permissions.sh",
   "hooks/validate-sha-pins.sh",
@@ -68,7 +65,7 @@ const EXPECTED_HOOKS = [
 
 for (const hook of EXPECTED_HOOKS) {
   Deno.test(`e2e: CI hook file exists — ${hook}`, async () => {
-    const content = await Deno.readTextFile(REPO_ROOT + hook).catch(() => null);
+    let content = await Deno.readTextFile(REPO_ROOT + hook).catch(() => null);
     assertNotEquals(content, null, `Hook missing: ${hook}`);
     assertNotEquals(content!.trim(), "", `Hook is empty: ${hook}`);
   });
@@ -79,7 +76,7 @@ for (const hook of EXPECTED_HOOKS) {
 // ---------------------------------------------------------------------------
 
 Deno.test("e2e: TOPOLOGY.md exists", async () => {
-  const content = await Deno.readTextFile(REPO_ROOT + "TOPOLOGY.md").catch(() => null);
+  let content = await Deno.readTextFile(REPO_ROOT + "TOPOLOGY.md").catch(() => null);
   assertNotEquals(content, null, "TOPOLOGY.md must exist");
 });
 
@@ -88,7 +85,7 @@ Deno.test("e2e: TOPOLOGY.md exists", async () => {
 // ---------------------------------------------------------------------------
 
 Deno.test("e2e: NOTICE file is present and non-trivial", async () => {
-  const content = await Deno.readTextFile(REPO_ROOT + "NOTICE").catch(() => null);
+  let content = await Deno.readTextFile(REPO_ROOT + "NOTICE").catch(() => null);
   assertNotEquals(content, null, "NOTICE must exist");
   assertNotEquals(content!.trim(), "", "NOTICE must not be empty");
 });
@@ -98,7 +95,7 @@ Deno.test("e2e: NOTICE file is present and non-trivial", async () => {
 // ---------------------------------------------------------------------------
 
 Deno.test("e2e: Justfile contains a 'test' recipe", async () => {
-  const content = await Deno.readTextFile(REPO_ROOT + "Justfile").catch(() => null);
+  let content = await Deno.readTextFile(REPO_ROOT + "Justfile").catch(() => null);
   assertNotEquals(content, null, "Justfile must exist");
   assertStringIncludes(content!, "test", "Justfile should have a test recipe");
 });
@@ -108,8 +105,8 @@ Deno.test("e2e: Justfile contains a 'test' recipe", async () => {
 // ---------------------------------------------------------------------------
 
 Deno.test("e2e: deno.json or import map is present for Deno deps", async () => {
-  const hasDeno = await Deno.stat(REPO_ROOT + "deno.json").then(() => true).catch(() => false);
-  const hasImportMap = await Deno.stat(REPO_ROOT + "import_map.json").then(() => true).catch(() => false);
+  let hasDeno = await Deno.stat(REPO_ROOT + "deno.json").then(() => true).catch(() => false);
+  let hasImportMap = await Deno.stat(REPO_ROOT + "import_map.json").then(() => true).catch(() => false);
   // For scaffold repos, neither may exist yet — this is a soft check
   // We verify the test infrastructure itself knows about Deno
   assertEquals(
@@ -123,7 +120,7 @@ Deno.test("e2e: deno.json or import map is present for Deno deps", async () => {
 // E2E: QUICKSTART guides exist (user, dev, maintainer)
 // ---------------------------------------------------------------------------
 
-const QUICKSTART_FILES = [
+let QUICKSTART_FILES = [
   "QUICKSTART-USER.adoc",
   "QUICKSTART-DEV.adoc",
   "QUICKSTART-MAINTAINER.adoc",
@@ -131,7 +128,7 @@ const QUICKSTART_FILES = [
 
 for (const qs of QUICKSTART_FILES) {
   Deno.test(`e2e: quickstart guide present — ${qs}`, async () => {
-    const exists = await Deno.stat(REPO_ROOT + qs).then(() => true).catch(() => false);
+    let exists = await Deno.stat(REPO_ROOT + qs).then(() => true).catch(() => false);
     assertEquals(exists, true, `Missing quickstart guide: ${qs}`);
   });
 }
@@ -141,8 +138,7 @@ for (const qs of QUICKSTART_FILES) {
 // ---------------------------------------------------------------------------
 
 Deno.test("e2e: CITATION.cff exists", async () => {
-  const exists = await Deno.stat(REPO_ROOT + "CITATION.cff").then(() => true).catch(() => false);
+  let exists = await Deno.stat(REPO_ROOT + "CITATION.cff").then(() => true).catch(() => false);
   assertEquals(exists, true, "CITATION.cff must exist");
 });
 
-==================================== */

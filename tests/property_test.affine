@@ -1,11 +1,8 @@
 // SPDX-License-Identifier: MPL-2.0
-// Ported via Harvard Engine mechanical processor
+// Ported via Harvard Engine (Semantic pass)
 
 module property_test;
 
-// TODO: Complete semantic implementation
-
-/* === ORIGINAL TYPESCRIPT CONTEXT ===
 // SPDX-License-Identifier: MPL-2.0
 // Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 //
@@ -19,17 +16,17 @@ module property_test;
 
 import { assertEquals, assertNotEquals, assertMatch } from "jsr:@std/assert@^1";
 
-const REPO_ROOT = new URL("../", import.meta.url).pathname;
+let REPO_ROOT = new URL("../", import.meta.url).pathname;
 
 // ---------------------------------------------------------------------------
 // Property: all .a2ml files have SPDX header
 // ---------------------------------------------------------------------------
 
-async function collectA2mlFiles(dir: string): Promise<string[]> {
+async fn collectA2mlFiles(dir: string): string[] {
   const result: string[] = [];
   try {
     for await (const entry of Deno.readDir(dir)) {
-      const full = `${dir}/${entry.name}`;
+      let full = `${dir}/${entry.name}`;
       if (entry.isDirectory) {
         result.push(...await collectA2mlFiles(full));
       } else if (entry.name.endsWith(".a2ml")) {
@@ -43,19 +40,19 @@ async function collectA2mlFiles(dir: string): Promise<string[]> {
 }
 
 Deno.test("property: every .a2ml file has SPDX-License-Identifier header", async () => {
-  const files = await collectA2mlFiles(REPO_ROOT + ".machine_readable");
+  let files = await collectA2mlFiles(REPO_ROOT + ".machine_readable");
   // also check root manifest
   files.push(REPO_ROOT + "0-AI-MANIFEST.a2ml");
 
   // Some scaffold files may not yet carry SPDX headers;
   // exclude them from this check until they are updated upstream.
-  const SPDX_EXEMPT = ["ANCHOR.a2ml", "0-AI-MANIFEST.a2ml"];
+  let SPDX_EXEMPT = ["ANCHOR.a2ml", "0-AI-MANIFEST.a2ml"];
 
   for (const file of files) {
-    const basename = file.split("/").pop() ?? "";
+    let basename = file.split("/").pop() ?? "";
     if (SPDX_EXEMPT.includes(basename)) continue;
-    const content = await Deno.readTextFile(file);
-    const hasSpdx = /SPDX-License-Identifier:/.test(content);
+    let content = await Deno.readTextFile(file);
+    let hasSpdx = /SPDX-License-Identifier:/.test(content);
     assertEquals(hasSpdx, true, `Missing SPDX header in ${file}`);
   }
 });
@@ -65,12 +62,12 @@ Deno.test("property: every .a2ml file has SPDX-License-Identifier header", async
 // ---------------------------------------------------------------------------
 
 Deno.test("property: all .a2ml files use MPL-2.0", async () => {
-  const files = await collectA2mlFiles(REPO_ROOT + ".machine_readable");
+  let files = await collectA2mlFiles(REPO_ROOT + ".machine_readable");
   files.push(REPO_ROOT + "0-AI-MANIFEST.a2ml");
 
   for (const file of files) {
-    const content = await Deno.readTextFile(file);
-    const match = content.match(/SPDX-License-Identifier:\s*(\S+)/);
+    let content = await Deno.readTextFile(file);
+    let match = content.match(/SPDX-License-Identifier:\s*(\S+)/);
     if (match) {
       assertEquals(
         match[1],
@@ -86,12 +83,12 @@ Deno.test("property: all .a2ml files use MPL-2.0", async () => {
 // ---------------------------------------------------------------------------
 
 Deno.test("property: all hook scripts have bash/sh shebang", async () => {
-  const hooksDir = REPO_ROOT + "hooks";
+  let hooksDir = REPO_ROOT + "hooks";
   try {
     for await (const entry of Deno.readDir(hooksDir)) {
       if (entry.isFile && entry.name.endsWith(".sh")) {
-        const content = await Deno.readTextFile(`${hooksDir}/${entry.name}`);
-        const firstLine = content.split("\n")[0];
+        let content = await Deno.readTextFile(`${hooksDir}/${entry.name}`);
+        let firstLine = content.split("\n")[0];
         assertEquals(
           firstLine.startsWith("#!"),
           true,
@@ -109,7 +106,7 @@ Deno.test("property: all hook scripts have bash/sh shebang", async () => {
 // ---------------------------------------------------------------------------
 
 // Generate a variety of comment styles and ensure extraction is consistent
-const commentStyles = [
+let commentStyles = [
   ["# SPDX-License-Identifier: MPL-2.0", "MPL-2.0"],
   ["// SPDX-License-Identifier: MPL-2.0", "MPL-2.0"],
   ["/* SPDX-License-Identifier: MPL-2.0 */", "MIT"],
@@ -119,7 +116,7 @@ const commentStyles = [
 
 for (const [input, expected] of commentStyles) {
   Deno.test(`property: SPDX extraction handles comment style "${input.slice(0, 20)}..."`, () => {
-    const match = input.match(/SPDX-License-Identifier:\s*(\S+)/);
+    let match = input.match(/SPDX-License-Identifier:\s*(\S+)/);
     assertNotEquals(match, null, `Should extract SPDX ID from: ${input}`);
     assertEquals(match![1], expected);
   });
@@ -130,11 +127,11 @@ for (const [input, expected] of commentStyles) {
 // ---------------------------------------------------------------------------
 
 Deno.test("property: k9 example files are present and non-empty", async () => {
-  const k9ExamplesDir = REPO_ROOT + "contractiles/k9/examples";
+  let k9ExamplesDir = REPO_ROOT + "contractiles/k9/examples";
   try {
     for await (const entry of Deno.readDir(k9ExamplesDir)) {
       if (entry.isFile) {
-        const content = await Deno.readTextFile(`${k9ExamplesDir}/${entry.name}`);
+        let content = await Deno.readTextFile(`${k9ExamplesDir}/${entry.name}`);
         assertNotEquals(content.trim(), "", `K9 example ${entry.name} must not be empty`);
       }
     }
@@ -147,7 +144,7 @@ Deno.test("property: k9 example files are present and non-empty", async () => {
 // Property: contractile files (Dustfile, Mustfile, Intentfile) are present
 // ---------------------------------------------------------------------------
 
-const contractileFiles = [
+let contractileFiles = [
   "contractiles/dust/Dustfile",
   "contractiles/must/Mustfile",
   "contractiles/lust/Intentfile",
@@ -156,7 +153,7 @@ const contractileFiles = [
 for (const f of contractileFiles) {
   Deno.test(`property: contractile file exists and non-empty — ${f}`, async () => {
     try {
-      const content = await Deno.readTextFile(REPO_ROOT + f);
+      let content = await Deno.readTextFile(REPO_ROOT + f);
       assertNotEquals(content.trim(), "", `${f} must not be empty`);
     } catch {
       // file does not exist — report as failure
@@ -170,8 +167,8 @@ for (const f of contractileFiles) {
 // ---------------------------------------------------------------------------
 
 Deno.test("property: README.adoc contains at least 3 AsciiDoc section headings", async () => {
-  const content = await Deno.readTextFile(REPO_ROOT + "README.adoc");
-  const headings = content.match(/^={1,6}\s+.+/gm) ?? [];
+  let content = await Deno.readTextFile(REPO_ROOT + "README.adoc");
+  let headings = content.match(/^={1,6}\s+.+/gm) ?? [];
   assertEquals(
     headings.length >= 3,
     true,
@@ -179,4 +176,3 @@ Deno.test("property: README.adoc contains at least 3 AsciiDoc section headings",
   );
 });
 
-==================================== */

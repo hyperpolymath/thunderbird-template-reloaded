@@ -1,11 +1,8 @@
 // SPDX-License-Identifier: MPL-2.0
-// Ported via Harvard Engine mechanical processor
+// Ported via Harvard Engine (Semantic pass)
 
 module bench_test;
 
-// TODO: Complete semantic implementation
-
-/* === ORIGINAL TYPESCRIPT CONTEXT ===
 // SPDX-License-Identifier: MPL-2.0
 // Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 //
@@ -18,7 +15,7 @@ module bench_test;
 //
 // Run with: deno bench tests/bench_test.ts
 
-const REPO_ROOT = new URL("../", import.meta.url).pathname;
+let REPO_ROOT = new URL("../", import.meta.url).pathname;
 
 // ---------------------------------------------------------------------------
 // Bench: file reading throughput
@@ -53,7 +50,7 @@ Deno.bench({
 // Bench: SPDX regex matching
 // ---------------------------------------------------------------------------
 
-const sampleContent = `# SPDX-License-Identifier: MPL-2.0
+let sampleContent = `# SPDX-License-Identifier: MPL-2.0
 # Copyright (c) 2026 Jonathan D.A. Jewell
 
 [metadata]
@@ -111,7 +108,7 @@ Deno.bench({
 // Bench: JSON parse (proxy for metadata parsing workload)
 // ---------------------------------------------------------------------------
 
-const jsonSample = JSON.stringify({
+let jsonSample = JSON.stringify({
   project: "thunderbird-template-reloaded",
   version: "0.1.0",
   crg_grade: "C",
@@ -139,4 +136,3 @@ Deno.bench({
   },
 });
 
-==================================== */

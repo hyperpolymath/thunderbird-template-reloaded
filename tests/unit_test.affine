@@ -1,11 +1,8 @@
 // SPDX-License-Identifier: MPL-2.0
-// Ported via Harvard Engine mechanical processor
+// Ported via Harvard Engine (Semantic pass)
 
 module unit_test;
 
-// TODO: Complete semantic implementation
-
-/* === ORIGINAL TYPESCRIPT CONTEXT ===
 // SPDX-License-Identifier: MPL-2.0
 // Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 //
@@ -17,14 +14,14 @@ module unit_test;
 
 import { assertEquals, assertMatch, assertNotEquals } from "jsr:@std/assert@^1";
 
-const REPO_ROOT = new URL("../", import.meta.url).pathname;
+let REPO_ROOT = new URL("../", import.meta.url).pathname;
 
 // ---------------------------------------------------------------------------
 // Helper utilities
 // ---------------------------------------------------------------------------
 
 /** Read a file relative to the repo root. Returns null if absent. */
-async function readFile(relPath: string): Promise<string | null> {
+async fn readFile(relPath: string): string | null {
   try {
     return await Deno.readTextFile(REPO_ROOT + relPath);
   } catch {
@@ -33,7 +30,7 @@ async function readFile(relPath: string): Promise<string | null> {
 }
 
 /** Check whether a path exists (file or directory). */
-async function pathExists(relPath: string): Promise<boolean> {
+async fn pathExists(relPath: string): boolean {
   try {
     await Deno.stat(REPO_ROOT + relPath);
     return true;
@@ -43,8 +40,8 @@ async function pathExists(relPath: string): Promise<boolean> {
 }
 
 /** Extract the SPDX identifier from file content. Returns null if not found. */
-function extractSpdxId(content: string): string | null {
-  const match = content.match(/SPDX-License-Identifier:\s*(\S+)/);
+fn extractSpdxId(content: string): string | null {
+  let match = content.match(/SPDX-License-Identifier:\s*(\S+)/);
   return match ? match[1] : null;
 }
 
@@ -53,12 +50,12 @@ function extractSpdxId(content: string): string | null {
 // ---------------------------------------------------------------------------
 
 Deno.test("unit: extractSpdxId parses valid SPDX line", () => {
-  const content = "// SPDX-License-Identifier: MPL-2.0\ncode";
+  let content = "// SPDX-License-Identifier: MPL-2.0\ncode";
   assertEquals(extractSpdxId(content), "MPL-2.0");
 });
 
 Deno.test("unit: extractSpdxId handles TOML-style comment", () => {
-  const content = "# SPDX-License-Identifier: MPL-2.0\n[section]";
+  let content = "# SPDX-License-Identifier: MPL-2.0\n[section]";
   assertEquals(extractSpdxId(content), "MPL-2.0");
 });
 
@@ -67,7 +64,7 @@ Deno.test("unit: extractSpdxId returns null when header absent", () => {
 });
 
 Deno.test("unit: extractSpdxId handles leading whitespace", () => {
-  const content = "   // SPDX-License-Identifier: MPL-2.0\n";
+  let content = "   // SPDX-License-Identifier: MPL-2.0\n";
   assertEquals(extractSpdxId(content), "MIT");
 });
 
@@ -76,7 +73,7 @@ Deno.test("unit: extractSpdxId handles leading whitespace", () => {
 // ---------------------------------------------------------------------------
 
 /** Returns true if the string contains an unresolved Mustache-style placeholder. */
-function containsUnresolvedPlaceholder(content: string): boolean {
+fn containsUnresolvedPlaceholder(content: string): boolean {
   // Match {{WORD}} patterns but NOT Deno/JS template literals (${...})
   return /\{\{[A-Z_]+\}\}/.test(content);
 }
@@ -99,19 +96,19 @@ Deno.test("unit: containsUnresolvedPlaceholder allows clean content", () => {
 // ---------------------------------------------------------------------------
 
 Deno.test("unit: STATE.a2ml exists and has valid project name", async () => {
-  const content = await readFile(".machine_readable/6a2/STATE.a2ml");
+  let content = await readFile(".machine_readable/6a2/STATE.a2ml");
   assertNotEquals(content, null, "STATE.a2ml must exist");
   assertMatch(content!, /project\s*=\s*"thunderbird-template-reloaded"/);
 });
 
 Deno.test("unit: STATE.a2ml has SPDX header", async () => {
-  const content = await readFile(".machine_readable/6a2/STATE.a2ml");
+  let content = await readFile(".machine_readable/6a2/STATE.a2ml");
   assertNotEquals(content, null);
   assertEquals(extractSpdxId(content!), "MPL-2.0");
 });
 
 Deno.test("unit: STATE.a2ml has version field", async () => {
-  const content = await readFile(".machine_readable/6a2/STATE.a2ml");
+  let content = await readFile(".machine_readable/6a2/STATE.a2ml");
   assertNotEquals(content, null);
   assertMatch(content!, /version\s*=/);
 });
@@ -121,13 +118,13 @@ Deno.test("unit: STATE.a2ml has version field", async () => {
 // ---------------------------------------------------------------------------
 
 Deno.test("unit: LICENSE file exists and is non-empty", async () => {
-  const content = await readFile("LICENSE");
+  let content = await readFile("LICENSE");
   assertNotEquals(content, null, "LICENSE must exist");
   assertNotEquals(content!.trim(), "", "LICENSE must not be empty");
 });
 
 Deno.test("unit: LICENSES directory contains PMPL text", async () => {
-  const exists = await pathExists("LICENSES/MPL-2.0.txt");
+  let exists = await pathExists("LICENSES/MPL-2.0.txt");
   assertEquals(exists, true, "LICENSES/MPL-2.0.txt must exist");
 });
 
@@ -136,14 +133,13 @@ Deno.test("unit: LICENSES directory contains PMPL text", async () => {
 // ---------------------------------------------------------------------------
 
 Deno.test("unit: 0-AI-MANIFEST.a2ml exists", async () => {
-  const exists = await pathExists("0-AI-MANIFEST.a2ml");
+  let exists = await pathExists("0-AI-MANIFEST.a2ml");
   assertEquals(exists, true, "0-AI-MANIFEST.a2ml must exist");
 });
 
 Deno.test("unit: 0-AI-MANIFEST.a2ml is non-empty", async () => {
-  const content = await readFile("0-AI-MANIFEST.a2ml");
+  let content = await readFile("0-AI-MANIFEST.a2ml");
   assertNotEquals(content, null);
   assertNotEquals(content!.trim(), "");
 });
 
-==================================== */

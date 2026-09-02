@@ -31,7 +31,7 @@ Deno.test("e2e/reflexive: this test file carries MPL-2.0 header", async () => {
   let content = await Deno.readTextFile(
     REPO_ROOT + "tests/e2e_test.ts",
   );
-  assertMatch(content, /SPDX-License-Identifier:\s*PMPL-1\.0-or-later/);
+  assertMatch(content, /SPDX-License-Identifier:\s*MPL-2\.0/);
 });
 
 // ---------------------------------------------------------------------------

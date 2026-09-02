@@ -79,14 +79,13 @@ Deno.test("contract/RSR: ABI-FFI-README.md is present", async () => {
 // Contract: License policy obligations
 // ---------------------------------------------------------------------------
 
-Deno.test("contract/license: LICENSE file uses PMPL", async () => {
+Deno.test("contract/license: LICENSE file uses MPL-2.0", async () => {
   let content = await readFile("LICENSE");
   assertNotEquals(content, null, "LICENSE must exist");
-  // PMPL license text contains "Palimpsest"
   assertStringIncludes(
-    content!.toLowerCase(),
-    "palimpsest",
-    "LICENSE must contain PMPL (Palimpsest) text",
+    content!,
+    "Mozilla Public License",
+    "LICENSE must contain Mozilla Public License text",
   );
 });
 

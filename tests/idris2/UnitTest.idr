@@ -181,7 +181,7 @@ allSuites =
         Nothing => assertTrue "LICENSE must exist" False
         Just content => assertTrue "LICENSE must not be empty" (length content > 0)
 
-  , test "unit: LICENSES directory contains PMPL text" $ do
+  , test "unit: LICENSES directory contains MPL-2.0 text" $ do
       ok <- fileExists "LICENSES/MPL-2.0.txt"
       assertTrue "LICENSES/MPL-2.0.txt must exist" ok
 

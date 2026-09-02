@@ -87,7 +87,7 @@ allSuites =
         Just content => assertTrue "non-empty" (length content > 0)
 
   -- Regex preconditions: invariants the bench measures must still hold.
-  , test "bench-pre: SPDX extractor finds PMPL in 1KB sample" $ do
+  , test "bench-pre: SPDX extractor finds MPL-2.0 in 1KB sample" $ do
       assertEq (extractSpdxId sampleContent) "MPL-2.0"
 
   , test "bench-pre: placeholder detection is False on 1KB sample" $ do

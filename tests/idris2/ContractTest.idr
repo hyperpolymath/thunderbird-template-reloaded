@@ -83,13 +83,13 @@ allSuites =
       assertEq ok True
 
   -- License policy obligations
-  , test "contract/license: LICENSE file uses PMPL" $ do
+  , test "contract/license: LICENSE file uses MPL-2.0" $ do
       mb <- readFileMaybe "LICENSE"
       case mb of
         Nothing => assertTrue "LICENSE must exist" False
         Just content =>
-          assertTrue "LICENSE must contain PMPL (Palimpsest) text"
-                     (isInfixOf "palimpsest" (toLowerAscii content))
+          assertTrue "LICENSE must contain Mozilla Public License text"
+                     (isInfixOf "Mozilla Public License" content)
 
   , test "contract/license: LICENSES/MPL-2.0.txt present" $ do
       ok <- fileExists "LICENSES/MPL-2.0.txt"

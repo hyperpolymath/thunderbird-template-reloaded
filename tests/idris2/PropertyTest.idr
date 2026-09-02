@@ -148,7 +148,7 @@ allSuites =
 
   -- All .a2ml files use MPL-2.0 (if SPDX header present).
   , test "property: all .a2ml files use MPL-2.0" $ do
-      allPass (map checkSpdxIsPmpl a2mlFiles)
+      allPass (map checkSpdxIsMpl2 a2mlFiles)
 
   -- Hook scripts shebang property — TS swallows ENOENT; we report explicitly.
   , test "property: all hook scripts have bash/sh shebang" $ do
@@ -185,8 +185,8 @@ allSuites =
               assertTrue ("missing SPDX in: " ++ path)
                          (isInfixOf "SPDX-License-Identifier:" content)
 
-    checkSpdxIsPmpl : String -> IO Bool
-    checkSpdxIsPmpl path = do
+    checkSpdxIsMpl2 : String -> IO Bool
+    checkSpdxIsMpl2 path = do
       mb <- readFileMaybe path
       case mb of
         Nothing => pure True   -- missing file handled by checkSpdxPresent

@@ -25,4 +25,4 @@
   (synopsis "thunderbird-template-reloaded")
   (description "thunderbird-template-reloaded — part of the hyperpolymath ecosystem.")
   (home-page "https://github.com/hyperpolymath/thunderbird-template-reloaded")
-  (license ((@@ (guix licenses) license) "MPL-2.0" "https://github.com/hyperpolymath/palimpsest-license")))
+  (license (@ (guix licenses) mpl2.0)))

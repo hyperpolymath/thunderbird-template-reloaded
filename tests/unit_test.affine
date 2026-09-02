@@ -123,7 +123,7 @@ Deno.test("unit: LICENSE file exists and is non-empty", async () => {
   assertNotEquals(content!.trim(), "", "LICENSE must not be empty");
 });
 
-Deno.test("unit: LICENSES directory contains PMPL text", async () => {
+Deno.test("unit: LICENSES directory contains MPL-2.0 text", async () => {
   let exists = await pathExists("LICENSES/MPL-2.0.txt");
   assertEquals(exists, true, "LICENSES/MPL-2.0.txt must exist");
 });

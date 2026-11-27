@@ -95,7 +95,7 @@ Per Hyperpolymath Standard:
 |Requirement |Implementation
 
 |No TypeScript
-|Use ReScript exclusively
+|Use AffineScript exclusively
 
 |No Node.js/npm
 |Deno for build and tooling
